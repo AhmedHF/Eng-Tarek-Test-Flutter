@@ -5,7 +5,7 @@ import 'package:value_client/resources/index.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:value_client/widgets/index.dart';
 
-import '../../dynamic_links_service.dart';
+import '../../core/services/dynamic_links_service.dart';
 
 class SearchBreanchListScreen extends StatefulWidget {
   const SearchBreanchListScreen({Key? key}) : super(key: key);

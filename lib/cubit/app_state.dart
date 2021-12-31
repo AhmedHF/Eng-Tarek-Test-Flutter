@@ -1,9 +1,14 @@
 part of 'app_cubit.dart';
 
 @immutable
-abstract class AppStates {}
+abstract class AppStates {
+  final Locale locale;
+  final bool isDarkMode;
+   const AppStates({this.locale =  const Locale('en'),  this.isDarkMode = false});
+}
 
-class AppInitial extends AppStates {}
+class AppInitial extends AppStates {
+}
 
 class AppChangeModeState extends AppStates {}
 

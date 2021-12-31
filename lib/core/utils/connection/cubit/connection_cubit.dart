@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-
 part 'connection_state.dart';
 
 class ConnectionCheckerCubit extends Cubit<ConnectionCheckerState> {

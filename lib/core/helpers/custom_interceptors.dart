@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:value_client/core/config/network_constants.dart';
 import 'package:value_client/cubit/app_cubit.dart';
-import 'package:value_client/navigation_service.dart';
+import 'package:value_client/core/services/navigation_service.dart';
 import 'package:value_client/repositories/user.dart';
 import 'package:value_client/widgets/index.dart';
 

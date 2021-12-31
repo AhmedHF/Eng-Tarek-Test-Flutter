@@ -3,7 +3,7 @@ import 'package:value_client/core/helpers/index.dart';
 import 'package:value_client/cubit/app_cubit.dart';
 import 'package:value_client/models/index.dart';
 import 'package:flutter/foundation.dart';
-import 'package:value_client/navigation_service.dart';
+import 'package:value_client/core/services/navigation_service.dart';
 import 'package:value_client/repositories/language.dart';
 import 'package:value_client/routes/app_routes.dart';
 
@@ -30,10 +30,8 @@ class UserRepository {
 
   static void logout() async {
     debugPrint('log out === ***************************************>');
-
     String initLanguage = LanguageRepository.initLanguage();
     DioHelper.init(lang: initLanguage, token: '');
-
     AppCubit cubit =
         AppCubit.get(NavigationService.navigatorKey.currentContext!);
     cubit.setUser(const UserDataModel());

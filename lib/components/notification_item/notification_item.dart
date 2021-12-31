@@ -4,7 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 import 'package:value_client/cubit/app_cubit.dart';
-import 'package:value_client/dynamic_links_service.dart';
+import 'package:value_client/core/services/dynamic_links_service.dart';
 import 'package:value_client/models/notification.dart';
 import 'package:value_client/resources/colors/colors.dart';
 import 'package:value_client/resources/index.dart';

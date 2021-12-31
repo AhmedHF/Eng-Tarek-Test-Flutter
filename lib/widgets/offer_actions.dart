@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:value_client/core/config/index.dart';
 import 'package:value_client/cubit/app_cubit.dart';
-import 'package:value_client/dynamic_links_service.dart';
+import 'package:value_client/core/services/dynamic_links_service.dart';
 import 'package:value_client/resources/index.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:value_client/screens/offerDetails/cubit/fav_cubit.dart';
