@@ -2,7 +2,7 @@ import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:value_client/navigation_service.dart';
+import 'package:value_client/core/services/navigation_service.dart';
 import 'package:value_client/routes/app_routes.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

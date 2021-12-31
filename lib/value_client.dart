@@ -2,7 +2,6 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-
 import 'package:value_client/cubit/app_cubit.dart';
 import 'package:value_client/resources/index.dart';
 import 'package:value_client/routes/app_router.dart';
@@ -13,10 +12,9 @@ import 'package:value_client/screens/offerDetails/cubit/fav_cubit.dart';
 import 'package:value_client/screens/purchased_coupon/cubit/gift_cubit.dart';
 import 'package:value_client/screens/search/cubit/search_cubit.dart';
 import 'package:value_client/screens/storesList/cubit/stores_slider_cubit.dart';
-
 import 'core/utils/connection/cubit/connection_cubit.dart';
 import 'core/utils/network/cubit/internet_cubit.dart';
-import 'navigation_service.dart';
+import 'core/services/navigation_service.dart';
 import 'screens/cart/cubit/cart_cubit.dart';
 import 'screens/home/cubit/home_cubit.dart';
 import 'screens/home/cubit/slider_cubit.dart';
@@ -24,10 +22,11 @@ import 'screens/home/cubit/top_discount_cubit.dart';
 import 'screens/home/cubit/top_offers_cubit.dart';
 import 'screens/my_value/cubit/saving_cubit.dart';
 import 'screens/rated_offers/cubit/rated_offers_cubit.dart';
+import 'package:value_client/injection_container.dart' as di;
 
-class MyApp extends StatelessWidget {
+class ValueClient extends StatelessWidget {
   final String initialRoute;
-  const MyApp({
+  const ValueClient({
     Key? key,
     required this.initialRoute,
   }) : super(key: key);
@@ -36,10 +35,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<ConnectionCheckerCubit>(
-          create: (_) => ConnectionCheckerCubit(
-              internetConnectionChecker: InternetConnectionChecker()),
-        ),
+        BlocProvider(
+            create: (_) => di.serviceLocator<ConnectionCheckerCubit>()),
+        // BlocProvider<ConnectionCheckerCubit>(
+        //   create: (_) => ConnectionCheckerCubit(
+        //       internetConnectionChecker: InternetConnectionChecker()),
+        // ),
         BlocProvider<InternetCubit>(
           create: (_) => InternetCubit(connectivity: Connectivity()),
         ),
@@ -89,34 +90,25 @@ class MyApp extends StatelessWidget {
           create: (context) => SavingCubit(),
         ),
       ],
-      child: BlocConsumer<AppCubit, AppStates>(
-        listener: (context, state) {},
+      child: BlocBuilder<AppCubit, AppStates>(
         builder: (context, state) {
-          debugPrint('-----my app-----');
-
-          AppCubit cubit = AppCubit.get(context);
-          return GestureDetector(
-            onTap: () {
-              FocusScope.of(context).requestFocus(FocusNode());
-            },
-            child: MaterialApp(
-              navigatorKey: NavigationService.navigatorKey,
-              debugShowCheckedModeBanner: false,
-              title: 'Value',
-              theme: lightTheme(),
-              darkTheme: darkTheme(),
-              themeMode: cubit.isDarkTheme ? ThemeMode.dark : ThemeMode.light,
-              localizationsDelegates: const [
-                AppLocalizations.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              supportedLocales: L10n.all,
-              locale: cubit.locale,
-              initialRoute: initialRoute,
-              onGenerateRoute: AppRouter.onGenerateAppRoute,
-            ),
+          return MaterialApp(
+            navigatorKey: NavigationService.navigatorKey,
+            debugShowCheckedModeBanner: false,
+            title: 'Value',
+            theme: lightTheme(),
+            darkTheme: darkTheme(),
+            themeMode: state.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: L10n.all,
+            locale: state.locale,
+            initialRoute: initialRoute,
+            onGenerateRoute: AppRouter.onGenerateAppRoute,
           );
         },
       ),

@@ -6,7 +6,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'routes/app_routes.dart';
+import '../../routes/app_routes.dart';
 
 Future<void> initializePushNotificationService(context) async {
   initializeFirebaseService();
